@@ -1,0 +1,53 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<h1>Jogo da Velha</h1>
+
+
+
+<body>
+    <!-- Tela seleção de modo -->
+    <div id="tela-modo-jogo">
+        <p>Escolha um modo de jogo:</p>
+        <button onclick="iniciarJogo('multiplayer')">Jogador vs. Jogador</button>
+        <button onclick="iniciarJogo('facil')">Jogador vs. Computador (fácil)</button>
+        <button onclick="iniciarJogo('dificil')">Jogador vs. Computador (difícil)</button>
+    </div>
+
+    <!-- Tela do jogo -->
+    <div id="tela-jogo">
+        <p id="msg">Quem joga: X</p>
+
+        <div id="tabuleiro">
+            <button class="tile" onclick="realizarJogada(0)"></button>
+            <button class="tile" onclick="realizarJogada(1)"></button>
+            <button class="tile" onclick="realizarJogada(2)"></button>
+            <button class="tile" onclick="realizarJogada(3)"></button>
+            <button class="tile" onclick="realizarJogada(4)"></button>
+            <button class="tile" onclick="realizarJogada(5)"></button>
+            <button class="tile" onclick="realizarJogada(6)"></button>
+            <button class="tile" onclick="realizarJogada(7)"></button>
+            <button class="tile" onclick="realizarJogada(8)"></button>
+        </div>
+
+        <div id="placar">
+            <span>X: <strong id="pontos-x">0</strong></span>
+            <span>Empates: <strong id="pontos-empate">0</strong></span>
+            <span>O: <strong id="pontos-o">0</strong></span>
+        </div>
+
+        <button onclick="reiniciarRodada()">Jogar novamente</button>
+        <button onclick="voltar()">Trocar modo</button>
+    </div>
+
+    <script src="game.js"></script>
+    <script src="ui.js"></script>
+
+</body>
+
+</html>
