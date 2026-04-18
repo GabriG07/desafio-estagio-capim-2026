@@ -41,7 +41,7 @@ button {
     background-color: #dcdcdc;
 }
 
-.tile .vencedor {
+.tile.vencedor {
     background-color: greenyellow;
 }
 
