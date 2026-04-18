@@ -22,13 +22,15 @@ app.post('/jogar', async (req, res) => {
                         Tabuleiro atual (0 a 8): ${JSON.stringify(tabuleiro)}. 
                         Espaços vazios disponíveis: ${vazias}. 
                         Busque realizar sempre a melhor jogada.
-                        Escolha um índice e responda APENAS o número.`
+                        Escolha um índice e responda APENAS o número.
+                        Responda SOMENTE com um único dígito numérico, sem nenhum texto antes ou depois.`
                     }]
                 }]
             })
         });
 
         const dados = await resposta.json();
+        // console.log('Parts:', JSON.stringify(dados.candidates[0].content.parts, null, 2));
 
         if (dados.error) {
             console.error("Erro da API Gemini:", dados.error);
@@ -36,7 +38,8 @@ app.post('/jogar', async (req, res) => {
         }
 
         if (dados.candidates && dados.candidates[0].content.parts[0].text) {
-            const texto = dados.candidates[0].content.parts[0].text.trim();
+            const parts = dados.candidates[0].content.parts;
+            const texto = parts[parts.length - 1].text.trim();
             const jogada = parseInt(texto);
 
             console.log(`IA escolheu a casa: ${jogada}`);

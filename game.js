@@ -1,3 +1,8 @@
+if (typeof fetch === 'undefined') {
+    global.fetch = require('node-fetch');
+}
+
+
 /*
 Tabuleiro: 
     0 | 1 | 2
@@ -42,4 +47,33 @@ function posicoesVazias(tabuleiro) {
 function jogadaAleatoria(tabuleiro) {
     const vazias = posicoesVazias(tabuleiro);
     return vazias[Math.floor(Math.random() * vazias.length)];
+}
+
+async function jogadaViaLLM(tabuleiro) {
+    try {
+        const resposta = await fetch('http://localhost:3000/jogar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                tabuleiro: tabuleiro,
+                vazias: posicoesVazias(tabuleiro)
+            })
+        });
+
+        const dados = await resposta.json();
+        return dados.jogada;
+    } catch (erro) {
+        console.error("Erro ao comunicar com o servidor:", erro);
+        return jogadaAleatoria(tabuleiro);
+    }
+}
+
+if (typeof module !== 'undefined') {
+    module.exports = {
+        verificarVencedor,
+        tabuleiroCheio,
+        posicoesVazias,
+        jogadaAleatoria,
+        jogadaViaLLM,
+    };
 }

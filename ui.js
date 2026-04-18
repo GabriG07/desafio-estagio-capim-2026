@@ -61,25 +61,6 @@ function realizarJogada(indice) {
     }
 }
 
-async function jogadaViaLLM(tabuleiro) {
-    try {
-        const resposta = await fetch('http://localhost:3000/jogar', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                tabuleiro: tabuleiro,
-                vazias: posicoesVazias(tabuleiro)
-            })
-        });
-
-        const dados = await resposta.json();
-        return dados.jogada;
-    } catch (erro) {
-        console.error("Erro ao comunicar com o servidor:", erro);
-        return jogadaAleatoria(tabuleiro);
-    }
-}
-
 function fazerJogada(indice) {
     tabuleiro[indice] = jogadorAtual;
     posicoes[indice].textContent = jogadorAtual;
