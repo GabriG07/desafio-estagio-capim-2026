@@ -83,4 +83,4 @@ Se a chamada ao servidor der erro, o jogo não trava. A função `jogadaViaLLM` 
 Usei o Claude durante o desenvolvimento. Ele ajudou na estilização da interface web, me recomendou em criar o `server.js` para acessar a API do Gemini e também me explicou como eu poderia fazer a criação dos testes sem a necessidade de utilizar alguma biblioteca externa.
 Foi muito útil também para ajudar a resolver problemas que inicialmente estavam ocorrendo ao acessar a API.
 
-A parte que mais mexi foi no tratamento de erros do servidor. A versão inicial não tinha o `try/catch` no `ui.js` nem o fallback para jogada aleatória, adicionei isso depois de perceber que o jogo travava quando o servidor não estava rodando.
+A parte que mais mexi foi no tratamento de erros do servidor. A versão inicial não tinha o `try/catch` no `game.js` nem o fallback para jogada aleatória, adicionei isso depois de perceber que o jogo travava quando o servidor não estava rodando.
